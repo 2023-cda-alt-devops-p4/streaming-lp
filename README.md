@@ -16,11 +16,9 @@ Avant celà, vous avez besoin d'une base de données pour le stockage. Et donc d
 
 A vous de jouer 🙂
 
-## Modalités pédagogiques
+### Modalités pédagogiques
 
-**Activité individuelle en mode collaboratif.**
-
-### Structure de la base de donnée
+#### Structure de la base de donnée
 
 *Les films*  
 Un film comporte un titre, un ou plusieurs acteurs, un réalisateur, une durée et l'année de sa sortie.
@@ -34,7 +32,7 @@ Nom et prénom.
 *Les utilisateurs*  
 Nom, prénom, email, mot de passe, rôle et liste des films préférés.
 
-### Les requêtes
+#### Les requêtes
 
 Voici un jeu de requêtes minimal à fournir pour tester votre bdd :
 - les titres et dates de sortie des films du plus récent au plus ancien
@@ -53,7 +51,7 @@ Nous avons aussi besoin de manipulations avancées:
 
 A placer dans le *README.md*.
 ​
-### Contraintes
+#### Contraintes
 
 - Le noSQL (MongoDB...) n'est pas autorisé
 - Vous devez créer votre propre environnement Docker
@@ -63,7 +61,7 @@ A placer dans le *README.md*.
 - Pour chaque entrée dans la base de données, il y aura la date de création et de modification.
 
 
-### Deadline
+#### Deadline
 
 4 jours.
 
@@ -82,3 +80,48 @@ Un dépôt GitHub contenant :
 - MLD
 - un fichier permettant de générer la bdd (incluant quelques données)
 - le jeu de requêtes dans le *README.md*
+
+## Requete SQL 
+
+#### Les titres et mes dates de sortie des films du plus récent au plus ancien 
+SELECT titre, annee FROM films ORDER BY annee DESC;
+
+#### Les noms, prénoms et âges des acteurs/actrices de plus de 50 ans dans l'ordre alphabetique
+SELECT nom, prenom, date_naissance, 
+    YEAR(CURDATE()) - YEAR(date_naissance) AS age 
+FROM acteurs
+WHERE date_naissance <= DATE_SUB(CURDATE(), INTERVAL 50 YEAR)
+ORDER BY nom, prenom;
+
+#### La liste des acteurs/actrices principaux pour un film donné (en supposant que l'acteur principal est celui avec le rôle "Acteur Principal")
+SELECT acteurs.nom, acteurs.prenom, films.titre
+FROM acteurs
+INNER JOIN jouer ON acteurs.id_acteur = jouer.id_acteur
+INNER JOIN films ON jouer.id_film = films.id_film
+WHERE jouer.role = 'Principal'
+AND film.titre = ['Titre film']
+
+#### La liste des films pour un acteur/actrice donné (en supposant que vous connaissez l'ID de l'acteur/actrice)
+SELECT films.titre, films.annee
+FROM films
+INNER JOIN jouer ON films.id_film = jouer.id_film
+WHERE jouer.id_acteur = [ID_de_l_acteur];
+
+#### Ajouter un acteur/actrice (assumant que vous avez les valeurs pour nom, prenom et date de naissance)
+INSERT INTO acteurs (nom, prenom, date_naissance)
+VALUES ('Nouveau', 'Acteur', '1990-01-01');
+
+#### Modifier un film (assumant que vous avez l'ID du film que vous souhaitez modifier et la nouvelle valeur pour le titre) 
+UPDATE films
+SET titre = ['Nouveau Titre']
+WHERE id_film = [ID_du_film];
+
+#### Supprimer un acteur/actrice (assumant que vous avez l'ID de l'acteur/actrice que vous souhaitez supprimer
+DELETE FROM acteurs
+WHERE id_acteur = [ID_de_l_acteur];
+
+#### Afficher les 3 derniers acteurs/actrices ajouté(e)s
+SELECT nom, prenom, date_naissance
+FROM acteurs
+ORDER BY id_acteur DESC
+LIMIT 3;
