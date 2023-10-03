@@ -81,6 +81,24 @@ Un dépôt GitHub contenant :
 - un fichier permettant de générer la bdd (incluant quelques données)
 - le jeu de requêtes dans le *README.md*
 
+## Dictionnaire de données
+
+![img_png](./Conception/dictionnaire_de_donnees.png)
+
+## Diagramme 
+
+### MCD 
+
+![img_mcd](./Conception/MCD.png)
+
+### MLD 
+
+![img_mld](./Conception/MLD.png)
+
+### MPD 
+
+![img_mpd](./Conception/MPD.png)
+
 ## Requete SQL 
 
 #### Les titres et mes dates de sortie des films du plus récent au plus ancien 
