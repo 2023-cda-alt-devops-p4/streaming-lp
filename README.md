@@ -53,11 +53,11 @@ Un dépôt GitHub contenant :
 
 ## Requete SQL 
 
-**Les titres et mes dates de sortie des films du plus récent au plus ancien**
+- **Les titres et mes dates de sortie des films du plus récent au plus ancien**
 
 SELECT titre, annee FROM films ORDER BY annee DESC;
 
-**Les noms, prénoms et âges des acteurs/actrices de plus de 50 ans dans l'ordre alphabetique**
+- **Les noms, prénoms et âges des acteurs/actrices de plus de 50 ans dans l'ordre alphabetique**
 
 SELECT nom, prenom, date_naissance, 
     YEAR(CURDATE()) - YEAR(date_naissance) AS age 
@@ -65,7 +65,7 @@ FROM acteurs
 WHERE date_naissance <= DATE_SUB(CURDATE(), INTERVAL 50 YEAR)
 ORDER BY nom, prenom;
 
-**La liste des acteurs/actrices principaux pour un film donné (en supposant que l'acteur principal est celui avec le rôle "Acteur Principal")**
+- **La liste des acteurs/actrices principaux pour un film donné (en supposant que l'acteur principal est celui avec le rôle "Acteur Principal")**
 
 SELECT acteurs.nom, acteurs.prenom, films.titre
 FROM acteurs
@@ -74,30 +74,30 @@ INNER JOIN films ON jouer.id_film = films.id_film
 WHERE jouer.role = 'Principal'
 AND film.titre = ['Titre film']
 
-**La liste des films pour un acteur/actrice donné (en supposant que vous connaissez l'ID de l'acteur/actrice)**
+- **La liste des films pour un acteur/actrice donné (en supposant que vous connaissez l'ID de l'acteur/actrice)**
 
 SELECT films.titre, films.annee
 FROM films
 INNER JOIN jouer ON films.id_film = jouer.id_film
 WHERE jouer.id_acteur = [ID_de_l_acteur];
 
-**Ajouter un acteur/actrice (assumant que vous avez les valeurs pour nom, prenom et date de naissance)**
+- **Ajouter un acteur/actrice (assumant que vous avez les valeurs pour nom, prenom et date de naissance)**
 
 INSERT INTO acteurs (nom, prenom, date_naissance)
 VALUES ('Nouveau', 'Acteur', '1990-01-01');
 
-**Modifier un film (assumant que vous avez l'ID du film que vous souhaitez modifier et la nouvelle valeur pour le titre)**
+- **Modifier un film (assumant que vous avez l'ID du film que vous souhaitez modifier et la nouvelle valeur pour le titre)**
 
 UPDATE films
 SET titre = ['Nouveau Titre']
 WHERE id_film = [ID_du_film];
 
-**Supprimer un acteur/actrice (assumant que vous avez l'ID de l'acteur/actrice que vous souhaitez supprimer**
+- **Supprimer un acteur/actrice (assumant que vous avez l'ID de l'acteur/actrice que vous souhaitez supprimer**
 
 DELETE FROM acteurs
 WHERE id_acteur = [ID_de_l_acteur];
 
-**Afficher les 3 derniers acteurs/actrices ajouté(e)s**
+- **Afficher les 3 derniers acteurs/actrices ajouté(e)s**
 
 SELECT nom, prenom, date_naissance
 FROM acteurs
