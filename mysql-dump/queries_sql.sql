@@ -46,7 +46,9 @@ SELECT COUNT(*) AS total_films
 FROM films;
 
 -- Afficher les films entre 2000 et 2010
-
 SELECT titre, annee
 FROM films
 WHERE annee BETWEEN 2000 AND 2010;
+
+-- Appeler la procédure pour obtenir la liste des films de Christopher Nolan
+CALL listeFilmParRealisateur('Nolan', 'Christopher');

@@ -193,15 +193,18 @@ INSERT INTO jouer (id_film, id_acteur, role_acteur) VALUES
 DELIMITER //
 CREATE PROCEDURE listeFilmParRealisateur(IN nom_realisateur VARCHAR(50), IN prenom_realisateur VARCHAR(50))
 BEGIN
-    DECLARE Liste VARCHAR(255);
+    DECLARE Liste VARCHAR(10000);
 
-    SELECT films.title, films.annee
+    SELECT GROUP_CONCAT(films.titre) INTO Liste
     FROM films
     INNER JOIN realisateurs ON films.id_realisateur = realisateurs.id_realisateur
-    WHERE realisateurs.nom = nom_realisateur AND realisateurs.prenom = prenom_realisateur
-    INTO Liste;
-END
+    WHERE realisateurs.nom = nom_realisateur AND realisateurs.prenom = prenom_realisateur;
 
+    SELECT Liste AS films_realisateur; 
+END //
+DELIMITER ;
+
+DELIMITER //
 CREATE TRIGGER ArchiveModificationsUtilisateurs
 AFTER UPDATE ON utilisateurs
 FOR EACH ROW
@@ -209,20 +212,15 @@ BEGIN
     IF OLD.nom <> NEW.nom THEN
         INSERT INTO archives (id_utilisateur, nom_col, date_modif, ancienne_val, nouvelle_val)
         VALUES (NEW.id_utilisateur, 'nom', NOW(), OLD.nom, NEW.nom);
-
     ELSEIF OLD.prenom <> NEW.prenom THEN
         INSERT INTO archives (id_utilisateur, nom_col, date_modif, ancienne_val, nouvelle_val)
         VALUES (NEW.id_utilisateur, 'prenom', NOW(), OLD.prenom, NEW.prenom);
-
     ELSEIF OLD.mail <> NEW.mail THEN
         INSERT INTO archives (id_utilisateur, nom_col, date_modif, ancienne_val, nouvelle_val)
         VALUES (NEW.id_utilisateur, 'mail', NOW(), OLD.mail, NEW.mail);
-
     ELSEIF OLD.mdp <> NEW.mdp THEN
         INSERT INTO archives (id_utilisateur, nom_col, date_modif, ancienne_val, nouvelle_val)
         VALUES (NEW.id_utilisateur, 'mdp', NOW(), OLD.mdp, NEW.mdp);
-
     END IF;
-
-END 
-// DELIMITER;
+END //
+DELIMITER ;
