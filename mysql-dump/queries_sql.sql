@@ -41,3 +41,12 @@ FROM acteurs
 ORDER BY id_acteur DESC
 LIMIT 3;
 
+-- Afficher le nombres total de films 
+SELECT COUNT(*) AS total_films
+FROM films;
+
+-- Afficher les films entre 2000 et 2010
+
+SELECT titre, annee
+FROM films
+WHERE annee BETWEEN 2000 AND 2010;
