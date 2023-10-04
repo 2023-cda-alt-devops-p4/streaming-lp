@@ -59,6 +59,7 @@ CREATE TABLE archives(
 CREATE TABLE jouer(
    id_film INT,
    id_acteur INT,
+   role_acteur VARCHAR(50) NOT NULL,
    PRIMARY KEY(id_film, id_acteur),
    FOREIGN KEY(id_film) REFERENCES films(id_film),
    FOREIGN KEY(id_acteur) REFERENCES acteurs(id_acteur)
@@ -190,22 +191,21 @@ INSERT INTO jouer (id_film, id_acteur, role) VALUES
 (8, 19, 'Principal');
 
 DELIMITER //
-CREATE PROCEDURE ListeFilmsRealisateur(IN nom_realisateur VARCHAR(50), IN prenom_realisateur VARCHAR(50))
+CREATE PROCEDURE listeFilmParRealisateur(IN nom_realisateur VARCHAR(50), IN prenom_realisateur VARCHAR(50))
 BEGIN
-    SELECT films.titre, films.annee
+    DECLARE Liste VARCHAR(255);
+
+    SELECT films.title, films.annee
     FROM films
     INNER JOIN realisateurs ON films.id_realisateur = realisateurs.id_realisateur
-    WHERE realisateurs.nom = nom_realisateur AND realisateurs.prenom = prenom_realisateur;
-END //
-DELIMITER ;
+    WHERE realisateurs.nom = nom_realisateur AND realisateurs.prenom = prenom_realisateur
+    INTO Liste;
+END
 
-
-DELIMITER //
 CREATE TRIGGER ArchiveModificationsUtilisateurs
 AFTER UPDATE ON utilisateurs
 FOR EACH ROW
 BEGIN
-
     IF OLD.nom <> NEW.nom THEN
         INSERT INTO archives (id_utilisateur, nom_col, date_modif, ancienne_val, nouvelle_val)
         VALUES (NEW.id_utilisateur, 'nom', NOW(), OLD.nom, NEW.nom);
@@ -224,5 +224,5 @@ BEGIN
 
     END IF;
 
-END //
-DELIMITER ;
+END 
+// DELIMITER;
