@@ -1,4 +1,4 @@
-USE streaming-lp-db,
+USE streamingDB;
 
 INSERT INTO acteurs (nom, prenom, date_naissance) VALUES
 ('Smith', 'Will', '1968-09-25'),
@@ -72,25 +72,25 @@ INSERT INTO roles (nom) VALUES
 
 INSERT INTO utilisateurs (nom, prenom, mail, mdp, id_role) VALUES
 ('Doe', 'John', 'john.doe@example.com', 'motdepasse1', 1),
-('Smith', 'Jane', 'jane.smith@example.com', 'motdepasse2', 2),
-('Brown', 'Robert', 'robert.brown@example.com', 'motdepasse3', 3),
-('Johnson', 'Mary', 'mary.johnson@example.com', 'motdepasse4', 4),
-('Wilson', 'David', 'david.wilson@example.com', 'motdepasse5', 5),
-('Lee', 'Sarah', 'sarah.lee@example.com', 'motdepasse6', 6),
-('Garcia', 'Michael', 'michael.garcia@example.com', 'motdepasse7', 7),
-('Martinez', 'Linda', 'linda.martinez@example.com', 'motdepasse8', 8),
-('Hernandez', 'James', 'james.hernandez@example.com', 'motdepasse9', 9),
-('Lopez', 'Susan', 'susan.lopez@example.com', 'motdepasse10', 10),
-('Gonzalez', 'William', 'william.gonzalez@example.com', 'motdepasse11', 11),
-('Davis', 'Patricia', 'patricia.davis@example.com', 'motdepasse12', 12),
-('Rodriguez', 'Richard', 'richard.rodriguez@example.com', 'motdepasse13', 13),
-('Jackson', 'Barbara', 'barbara.jackson@example.com', 'motdepasse14', 14),
-('White', 'Joseph', 'joseph.white@example.com', 'motdepasse15', 15),
-('Williams', 'Dorothy', 'dorothy.williams@example.com', 'motdepasse16', 16),
-('Thomas', 'Charles', 'charles.thomas@example.com', 'motdepasse17', 17),
-('Moore', 'Betty', 'betty.moore@example.com', 'motdepasse18', 18),
-('Taylor', 'George', 'george.taylor@example.com', 'motdepasse19', 19),
-('Anderson', 'Margaret', 'margaret.anderson@example.com', 'motdepasse20', 20);
+('Smith', 'Jane', 'jane.smith@example.com', 'motdepasse2', 1),
+('Brown', 'Robert', 'robert.brown@example.com', 'motdepasse3', 2),
+('Johnson', 'Mary', 'mary.johnson@example.com', 'motdepasse4', 2),
+('Wilson', 'David', 'david.wilson@example.com', 'motdepasse5', 2),
+('Lee', 'Sarah', 'sarah.lee@example.com', 'motdepasse6', 2),
+('Garcia', 'Michael', 'michael.garcia@example.com', 'motdepasse7', 2),
+('Martinez', 'Linda', 'linda.martinez@example.com', 'motdepasse8', 2),
+('Hernandez', 'James', 'james.hernandez@example.com', 'motdepasse9', 2),
+('Lopez', 'Susan', 'susan.lopez@example.com', 'motdepasse10', 2),
+('Gonzalez', 'William', 'william.gonzalez@example.com', 'motdepasse11', 2),
+('Davis', 'Patricia', 'patricia.davis@example.com', 'motdepasse12', 2),
+('Rodriguez', 'Richard', 'richard.rodriguez@example.com', 'motdepasse13', 2),
+('Jackson', 'Barbara', 'barbara.jackson@example.com', 'motdepasse14', 2),
+('White', 'Joseph', 'joseph.white@example.com', 'motdepasse15', 2),
+('Williams', 'Dorothy', 'dorothy.williams@example.com', 'motdepasse16', 2),
+('Thomas', 'Charles', 'charles.thomas@example.com', 'motdepasse17', 2),
+('Moore', 'Betty', 'betty.moore@example.com', 'motdepasse18', 2),
+('Taylor', 'George', 'george.taylor@example.com', 'motdepasse19', 2),
+('Anderson', 'Margaret', 'margaret.anderson@example.com', 'motdepasse20', 2);
 
 INSERT INTO jouer (id_film, id_acteur, role) VALUES
 (1, 3, 'Principal'), 
@@ -113,4 +113,4 @@ INSERT INTO jouer (id_film, id_acteur, role) VALUES
 (10, 12, 'Secondaire'), 
 (20, 13, 'Principal'), 
 (18, 9, 'Secondaire'), 
-(8, 19, 'Principal'), 
+(8, 19, 'Principal');

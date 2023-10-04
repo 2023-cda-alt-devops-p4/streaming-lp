@@ -1,7 +1,7 @@
-DROP DATABASE streaming-lp-db;
-CREATE DATABASE streaming-lp-db;
+DROP DATABASE IF EXISTS streamingDB;
+CREATE DATABASE streamingDB;
 
-USE DATABASE streaming-lp-db;
+USE streamingDB;
 
 CREATE TABLE acteurs (
    id_acteur INT AUTO_INCREMENT,
@@ -56,7 +56,7 @@ CREATE TABLE utilisateurs (
 CREATE TABLE jouer (
    id_film INT,
    id_acteur INT,
-   role VARCHAR(20) NOT NULL;
+   role VARCHAR(20) NOT NULL,
    PRIMARY KEY (id_film, id_acteur),
    FOREIGN KEY (id_film) REFERENCES films (id_film),
    FOREIGN KEY (id_acteur) REFERENCES acteurs (id_acteur)
