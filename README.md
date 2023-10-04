@@ -51,6 +51,19 @@ Un dépôt GitHub contenant :
 
 ![img_mpd](./Conception/MPD.png)
 
+
+## HOW TO USE 
+
+```bash
+git clone https://github.com/2023-cda-alt-devops-p4/streaming-lp
+cd streaming-lp
+docker compose up 
+```
+
+NB: change MYSQL_ROOT_PASSWORD and PORT 
+
+insert db with structure_database.sql insert_database.sql
+
 ## Requete SQL 
 
 - **Les titres et mes dates de sortie des films du plus récent au plus ancien**
