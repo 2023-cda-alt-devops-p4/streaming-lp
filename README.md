@@ -60,9 +60,8 @@ cd streaming-lp
 docker compose up 
 ```
 
-NB: change MYSQL_ROOT_PASSWORD and PORT 
-
-insert db with structure_database.sql insert_database.sql
+NB: IF NECESSARY change MYSQL_ROOT_PASSWORD and PORT 
+In DBEAVER pass allowPublicKeyRetrieval=TRUE 
 
 ## Requete SQL 
 

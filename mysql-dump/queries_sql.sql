@@ -13,14 +13,14 @@ SELECT acteurs.nom, acteurs.prenom, films.titre
 FROM acteurs
 INNER JOIN jouer ON acteurs.id_acteur = jouer.id_acteur
 INNER JOIN films ON jouer.id_film = films.id_film
-WHERE jouer.role = 'Principal'
-AND film.titre = ['Titre film']
+WHERE jouer.role_acteur = 'Principal'
+AND films.titre = 'The Dark Knight'
 
 -- La liste des films pour un acteur/actrice donné (en supposant que vous connaissez l'ID de l'acteur/actrice)
 SELECT films.titre, films.annee
 FROM films
 INNER JOIN jouer ON films.id_film = jouer.id_film
-WHERE jouer.id_acteur = [ID_de_l_acteur];
+WHERE jouer.id_acteur = 1;
 
 -- Ajouter un acteur/actrice (assumant que vous avez les valeurs pour nom, prenom et date de naissance)
 INSERT INTO acteurs (nom, prenom, date_naissance)
@@ -51,4 +51,6 @@ FROM films
 WHERE annee BETWEEN 2000 AND 2010;
 
 -- Appeler la procédure pour obtenir la liste des films de Christopher Nolan
+USE streamingDB;
+
 CALL listeFilmParRealisateur('Nolan', 'Christopher');
