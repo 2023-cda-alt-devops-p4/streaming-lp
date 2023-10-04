@@ -167,7 +167,7 @@ INSERT INTO utilisateurs (nom, prenom, mail, mdp, id_role) VALUES
 ('Taylor', 'George', 'george.taylor@example.com', 'motdepasse19', 2),
 ('Anderson', 'Margaret', 'margaret.anderson@example.com', 'motdepasse20', 2);
 
-INSERT INTO jouer (id_film, id_acteur, role) VALUES
+INSERT INTO jouer (id_film, id_acteur, role_acteur) VALUES
 (1, 3, 'Principal'), 
 (1, 2, 'Secondaire'),
 (2, 2, 'Principal'),
