@@ -28,7 +28,7 @@ VALUES ('Nouveau', 'Acteur', '1990-01-01', NOW());
 
 -- Modifier un film (assumant que vous avez l'ID du film que vous souhaitez modifier et la nouvelle valeur pour le titre) 
 UPDATE films
-SET titre = ['Nouveau Titre']
+SET titre = 'Nouveau Titre'
 WHERE id_film = 1;
 
 -- Supprimer un acteur/actrice (assumant que vous avez l'ID de l'acteur/actrice que vous souhaitez supprimer

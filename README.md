@@ -61,7 +61,10 @@ docker compose up
 ```
 
 NB: IF NECESSARY change MYSQL_ROOT_PASSWORD and PORT 
-In DBEAVER pass allowPublicKeyRetrieval=TRUE 
+
+in DBEAVER pass allowPublicKeyRetrieval=TRUE 
+
+use database.sql to create and insert database
 
 ## Requete SQL 
 
@@ -88,8 +91,8 @@ SELECT acteurs.nom, acteurs.prenom, films.titre
 FROM acteurs
 INNER JOIN jouer ON acteurs.id_acteur = jouer.id_acteur
 INNER JOIN films ON jouer.id_film = films.id_film
-WHERE jouer.role = 'Principal'
-AND film.titre = ['Titre film']
+WHERE jouer.role_acteur = 'Principal'
+AND films.titre = 'The Dark Knight'
 ```
 
 - **La liste des films pour un acteur/actrice donné (en supposant que vous connaissez l'ID de l'acteur/actrice)**
@@ -98,7 +101,7 @@ AND film.titre = ['Titre film']
 SELECT films.titre, films.annee
 FROM films
 INNER JOIN jouer ON films.id_film = jouer.id_film
-WHERE jouer.id_acteur = [ID_de_l_acteur];
+WHERE jouer.id_acteur = 1;
 ```
 
 - **Ajouter un acteur/actrice (assumant que vous avez les valeurs pour nom, prenom et date de naissance)**
@@ -112,15 +115,15 @@ VALUES ('Nouveau', 'Acteur', '1990-01-01');
 
 ```sql
 UPDATE films
-SET titre = ['Nouveau Titre']
-WHERE id_film = [ID_du_film];
+SET titre = 'Nouveau Titre'
+WHERE id_film = 1;
 ```
 
-- **Supprimer un acteur/actrice (assumant que vous avez l'ID de l'acteur/actrice que vous souhaitez supprimer**
+- **Supprimer un acteur/actrice assumant que vous avez l'ID de l'acteur/actrice que vous souhaitez supprimer**
 
 ```sql
 DELETE FROM acteurs
-WHERE id_acteur = [ID_de_l_acteur];
+WHERE id_acteur = 1;
 ```
 
 - **Afficher les 3 derniers acteurs/actrices ajouté(e)s**
